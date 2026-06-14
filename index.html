@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Shree Abayanjaneya Swami Mandir</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Cinzel',serif;
+}
+
+body{
+overflow:hidden;
+height:100vh;
+background:linear-gradient(135deg,#4b0000,#b8860b);
+}
+
+/* Landing Page */
+
+#landing{
+position:absolute;
+width:100%;
+height:100%;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+color:white;
+text-align:center;
+padding:20px;
+z-index:10;
+}
+
+#landing h1{
+font-size:3rem;
+margin-bottom:20px;
+text-shadow:0 0 20px gold;
+}
+
+#landing p{
+font-size:1.3rem;
+max-width:800px;
+line-height:1.8;
+margin-bottom:40px;
+}
+
+.enter-btn{
+padding:18px 45px;
+font-size:1.2rem;
+border:none;
+border-radius:50px;
+background:gold;
+cursor:pointer;
+font-weight:bold;
+box-shadow:0 0 30px gold;
+transition:.4s;
+}
+
+.enter-btn:hover{
+transform:scale(1.1);
+}
+
+/* Curtains */
+
+.curtain-left,
+.curtain-right{
+position:absolute;
+top:0;
+width:50%;
+height:100%;
+background:linear-gradient(45deg,#ffcc00,#ff9900,#cc6600);
+z-index:8;
+transition:2.5s ease-in-out;
+}
+
+.curtain-left{
+left:0;
+}
+
+.curtain-right{
+right:0;
+}
+
+.open-left{
+transform:translateX(-100%);
+}
+
+.open-right{
+transform:translateX(100%);
+}
+
+/* Invitation */
+
+#invitation{
+position:absolute;
+width:100%;
+height:100%;
+display:flex;
+justify-content:center;
+align-items:center;
+opacity:1;
+background:white;
+}
+.show{
+opacity:1;
+}
+
+.card{
+width:95%;
+max-width:1000px;
+}
+
+.card img{
+width:100%;
+height:90vh;
+object-fit:contain;
+border-radius:20px;
+box-shadow:0 0 50px gold;
+}
+
+/* Flowers */
+
+.flower{
+position:absolute;
+top:-100px;
+pointer-events:none;
+animation:fall linear forwards;
+z-index:100;
+}
+
+@keyframes fall{
+
+0%{
+transform:translateY(-100px) rotate(0deg);
+opacity:1;
+}
+
+100%{
+transform:translateY(120vh) rotate(720deg);
+opacity:0.8;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="landing">
+
+<h1>🕉️ Jai Hanuman 🕉️</h1>
+
+<p>
+Where devotion resides, fear disappears.
+Where Hanuman is remembered,
+strength, wisdom and success follow.
+</p>
+
+<button class="enter-btn" onclick="openInvitation()">
+🌺 Click Here 🌺
+</button>
+
+</div>
+
+<div class="curtain-left" id="leftCurtain"></div>
+<div class="curtain-right" id="rightCurtain"></div>
+
+<div id="invitation" class="show">
+
+<div class="card">
+    <img src="./invitation.jpg" alt="Invitation" style="width:100%;">
+</div>
+
+</div><script>
+
+function openInvitation(){
+
+document.getElementById("landing").style.display="none";
+
+document.getElementById("leftCurtain")
+.classList.add("open-left");
+
+document.getElementById("rightCurtain")
+.classList.add("open-right");
+
+setTimeout(function(){
+
+document.getElementById("invitation").style.opacity = "1";
+
+},1800);
+
+createFlowers();
+
+}
+function createFlowers(){
+
+setInterval(()=>{
+
+let flower=document.createElement("div");
+
+flower.className="flower";
+
+let petals=["🌸","🌺","🌼","🏵️"];
+
+flower.innerHTML=
+petals[Math.floor(Math.random()*petals.length)];
+
+flower.style.left=Math.random()*100+"vw";
+
+flower.style.fontSize=
+(20+Math.random()*25)+"px";
+
+flower.style.animationDuration=
+(4+Math.random()*5)+"s";
+
+document.body.appendChild(flower);
+
+setTimeout(()=>{
+flower.remove();
+},10000);
+
+},150);
+
+}
+
+</script>
+
+</body>
+</html>
